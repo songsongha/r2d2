@@ -80,7 +80,14 @@ export async function findObiWan() {
         command = await getUserInput(command).then()
 
         if (command.includes('MOVE')) {
-            r2d2Position = move(10, r2d2Position, r2d2Direction)
+            const split = command.split(' ')
+            const distance = Number(split[1])
+
+            if (isNaN(distance)) {
+                console.log('Invalid command')
+            } else {
+                r2d2Position = move(distance, r2d2Position, r2d2Direction)
+            }
         } else if (command === 'LEFT') {
             r2d2Direction = rotateDirection('LEFT', r2d2Direction)
         } else if (command === 'RIGHT') {
@@ -89,7 +96,7 @@ export async function findObiWan() {
             reportLocation(r2d2Position, r2d2Direction, obiWanPosition)
         }
     }
-    console.log('Congratulations you saved the Rebbellion!')
+    console.log('Congratulations you saved the Rebellion!')
     rl.close()
 }
 
