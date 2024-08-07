@@ -6,8 +6,7 @@ import { rotateDirection } from './commands/rotate'
 import readline from 'readline'
 
 const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
+    input: process.stdin
 })
 
 export type Coordinate = [number, number]
