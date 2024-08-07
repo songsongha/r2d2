@@ -57,6 +57,7 @@ function move(distance: number, position: Coordinate, direction: Direction): Coo
 
 function listValidCommands() {
     console.log('')
+    console.log('Here are the valid commands:')
     console.log('MOVE (x) will move R2-D2 (x) units forward in the direction it is currently facing')
     console.log(
         'LEFT and RIGHT will rotate R2-D2 90 degrees in the specified direction without changing the position of the robot'
@@ -87,16 +88,12 @@ export async function findObiWan() {
 
     while (!isSamePosition(r2d2Position, obiWanPosition)) {
         command = await getUserInput(command).then()
+        const moveCommandRegex = /^MOVE (-?\d+)$/
 
-        if (command.includes('MOVE')) {
+        if (moveCommandRegex.test(command.trim())) {
             const split = command.split(' ')
             const distance = Number(split[1])
-
-            if (isNaN(distance)) {
-                console.log('Invalid command')
-            } else {
-                r2d2Position = move(distance, r2d2Position, r2d2Direction)
-            }
+            r2d2Position = move(distance, r2d2Position, r2d2Direction)
         } else if (command === 'LEFT') {
             r2d2Direction = rotateDirection('LEFT', r2d2Direction)
         } else if (command === 'RIGHT') {
