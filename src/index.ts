@@ -55,11 +55,19 @@ function move(distance: number, position: Coordinate, direction: Direction): Coo
     return newPosition
 }
 
+function listValidCommands() {
+    console.log('')
+    console.log('MOVE (x) will move R2-D2 (x) units forward in the direction it is currently facing')
+    console.log(
+        'LEFT and RIGHT will rotate R2-D2 90 degrees in the specified direction without changing the position of the robot'
+    )
+    console.log('REPORT will report the location of both R2-D2 and Obi Wan as a grid coordinate and facing direction')
+}
+
 export async function findObiWan() {
     console.log(
         'You must see this droid safely delivered to Obi Wan Kenobi. This is our most desperate hour and you are the only hope.'
     )
-    // TODO: tell the user what commands they can use
 
     let r2d2Position: Coordinate
     let obiWanPosition: Coordinate
@@ -69,12 +77,13 @@ export async function findObiWan() {
     while (command !== 'LAND') {
         console.log('Please land on Tatooine using the command LAND')
         command = await getUserInput(command).then()
-        console.log({ command })
     }
 
     r2d2Position = [getRandomNumber(), getRandomNumber()]
     obiWanPosition = [getRandomNumber(), getRandomNumber()]
     reportLocation(r2d2Position, r2d2Direction, obiWanPosition)
+
+    listValidCommands()
 
     while (!isSamePosition(r2d2Position, obiWanPosition)) {
         command = await getUserInput(command).then()
@@ -94,6 +103,9 @@ export async function findObiWan() {
             r2d2Direction = rotateDirection('RIGHT', r2d2Direction)
         } else if (command === 'REPORT') {
             reportLocation(r2d2Position, r2d2Direction, obiWanPosition)
+        } else {
+            console.log('Not a valid command')
+            listValidCommands()
         }
     }
     console.log('Congratulations you saved the Rebellion!')
