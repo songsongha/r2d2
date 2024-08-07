@@ -49,7 +49,7 @@ function move(distance: number, position: Coordinate, direction: Direction): Coo
             newPosition[0] = newPosition[0] - distance
     }
     if (newPosition.filter((element) => element < 0 || element > 100).length) {
-        console.log('Invalid move')
+        console.log('\x1b[31m%s\x1b[0m', 'Invalid move')
         return position
     }
     return newPosition
@@ -101,7 +101,7 @@ export async function findObiWan() {
         } else if (command === 'REPORT') {
             reportLocation(r2d2Position, r2d2Direction, obiWanPosition)
         } else {
-            console.log('Not a valid command')
+            console.log('\x1b[31m%s\x1b[0m', 'Not a valid command')
             listValidCommands()
         }
     }
