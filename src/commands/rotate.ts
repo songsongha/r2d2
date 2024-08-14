@@ -1,4 +1,4 @@
-import { Coordinate, Direction } from '..'
+import { Direction } from '..'
 
 export function rotateDirection(rotation: 'LEFT' | 'RIGHT', direction: Direction): Direction {
     const directionArray: Direction[] = ['NORTH', 'EAST', 'SOUTH', 'WEST']
