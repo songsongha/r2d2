@@ -29,7 +29,6 @@ export async function findObiWan() {
     while (command !== 'LAND') {
         console.log('Please land on Tatooine using the command LAND')
         command = await getUserInput().then()
-        console.log({ command })
     }
 
     r2d2Position = [getRandomNumber(), getRandomNumber()]
@@ -40,7 +39,6 @@ export async function findObiWan() {
 
     while (!isSamePosition(r2d2Position, obiWanPosition)) {
         command = await getUserInput().then()
-        console.log({ command })
         const moveCommandRegex = /^MOVE (-?\d+)$/
 
         if (moveCommandRegex.test(command.trim())) {
