@@ -47,6 +47,8 @@ Example Input and Output
 > MOVE 12
 > Congratulations, you've saved the Rebellion!
 
+---
+
 TO START THE APPLICATION:
 run yarn install
 run yarn dev
