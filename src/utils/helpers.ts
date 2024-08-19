@@ -1,4 +1,4 @@
-import { Coordinate, Direction } from '..'
+import { Coordinate } from '..'
 
 export function getRandomNumber() {
     return Math.floor(Math.random() * 100)
