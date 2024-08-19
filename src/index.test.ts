@@ -7,31 +7,36 @@ import { rotateDirection } from './commands/rotate'
 import readline from 'readline'
 
 // Mock readline module
+const mockClose = jest.fn()
 jest.mock('readline', () => {
+    const responseQueue = ['LAND', 'MOVE 10', 'LEFT', 'REPORT', 'MOVE 5']
+
     const mockQuestion = jest.fn((query: string, callback: (input: string) => void) => {
-        callback('LAND') // First call returns 'LAND'
+        const response = responseQueue.shift() || 'LAND'
+        console.log({ response })
+        callback(response)
     })
 
     return {
         createInterface: jest.fn(() => ({
             question: mockQuestion,
-            close: jest.fn()
+            close: () => mockClose()
         }))
     }
 })
 
 const mockGetRandomNumber = jest.fn().mockReturnValue(22)
-const mockIsSamePosition = jest.fn().mockReturnValue(true)
 jest.mock('./utils/helpers', () => ({
-    getRandomNumber: () => mockGetRandomNumber(),
-    isSamePosition: () => mockIsSamePosition()
+    ...jest.requireActual('./utils/helpers'),
+    getRandomNumber: () => mockGetRandomNumber()
 }))
 
 describe('findObiWan()', () => {
-    it('should run tests', async () => {
+    it('should call getRandomNumber if the LAND command is input by the user', async () => {
         await findObiWan()
 
         expect(mockGetRandomNumber).toHaveBeenCalled()
-        expect(true).toBe(true)
+        expect(mockClose).toHaveBeenCalled()
     })
+    it('should call rotateDirection function if the LEFT command is input by the user', async () => {})
 })

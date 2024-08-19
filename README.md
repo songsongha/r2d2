@@ -1,5 +1,3 @@
-# r2d2
-
 R2-D2 Exercise
 The year is 1977, Star Wars: A New Hope has just been released. The true hero of the film, R2-D2 has acquired Death Star plans and needs to deliver them to Obi Wan Kenobi on the surface of Tatooine to help ensure victory for the rebellion. The problem is that upon landing R2-D2 has lost all autonomy and needs your to help guide him safely to Obi Wan Kenobi through manual commands.
 
@@ -48,9 +46,12 @@ Example Input and Output
 
 > MOVE 12
 > Congratulations, you've saved the Rebellion!
-> exit(0)
-> Submission Instructions
-> Clone this repository and commit your changes locally (or to a separate remote repository)
-> Use any packages or libraries which help you to complete these tasks
-> When you are finished, please send us a link to the completed repository or a zip of the contents if you prefer
-> Describe any challenges that made the task more difficult
+
+TO START THE APPLICATION:
+run yarn install
+run yarn dev
+
+TO RUN UNIT TESTS:
+yarn test
+
+All of the commands and the index file have unit tests to ensure the expected behavior of the game as described in the assignment.
