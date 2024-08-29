@@ -18,6 +18,8 @@ export function move(distance: number, position: Coordinate, direction: Directio
     if (newPosition.filter((element) => element < 0 || element > 100).length) {
         console.log('\x1b[31m%s\x1b[0m', 'Invalid move')
         return position
+    } else {
+        console.log('Move successful')
     }
     return newPosition
 }
